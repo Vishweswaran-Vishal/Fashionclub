@@ -74,6 +74,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'main.wsgi.application'
 
+SECURE_SSL_REDIRECT = True  # Redirect all HTTP connections to HTTPS
+
+CSRF_TRUSTED_ORIGINS = ['https://main.onrender.com']
+
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
