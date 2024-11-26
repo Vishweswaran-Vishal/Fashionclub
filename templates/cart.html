@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Cart</h1>
+  {% if items %}
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Product Name</th>
+          <th scope="col">Price</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Total Price</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in items %}
+          <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{ item.name }}</td>
+            <td>₹{{ item.total_price }}</td>
+            <td>{{ cart.quantity }}</td>
+            <td>₹{{ item.subtotal }}</td>
+            <td><a style="color: brown;" href="{% url 'buyer:cart_remove' product_id=item.id %}">remove</a></td>
+          </tr>
+        {% endfor %}
+        <tr>
+          <td colspan="4" class="text-right">Total</td>
+          <td>₹{{ total }}</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="text-right">
+      <a href="{% url 'buyer:place_order' %}" class="btn btn-primary">Place Order</a>
+    </div>
+  {% else %}
+    <p>Your cart is empty.</p>
+  {% endif %}
+{% endblock %}

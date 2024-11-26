@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add product</title>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function() {
+      // Listen for changes in the price field
+      $('#id_vendor_price').on('input', function() {
+          // Calculate the total price
+          var vendor_price = $(this).val();
+          var admin_profit = (vendor_price * 0.05).toFixed(2);
+          var gst = (vendor_price * 0.12).toFixed(2);
+          var total_price = (parseFloat(vendor_price) + parseFloat(admin_profit) + parseFloat(gst)).toFixed(2);
+          // Update the total price field
+          $('#total_price').text(total_price);
+          // Display the breakdown of costs
+          $('#admin_profit').text(admin_profit);
+          $('#gst').text(gst);
+      });
+  });
+  </script>
+  </head>
+  <body>
+<!------ Include the above in your HEAD tag ---------->
+  <form class="form-horizontal" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <fieldset>
+      <div class="container ont-weight-bold"> <center><h1>Add Product</h1></center> </div>
+      <hr>
+      {% if msg %}
+  {{ msg | safe }}
+  {% endif %}
+  {% if form.errors %}
+    <ul>
+    {% for field_errors in form.errors.values %}
+        {% for error in field_errors %}
+            <li>{{ error }}</li>
+        {% endfor %}
+    {% endfor %}
+    </ul>
+{% endif %}
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="name">Name:</label>
+      <div class="col-md-4">
+      <input type="text" name="name" value="{{ product.name }}" class="form-control input-md" placeholder="PRODUCT NAME">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="description">Description:</label>
+      <div class="col-md-4">
+      <textarea name="description" class="form-control input-md" placeholder="PRODUCT DESCRIPTION">{{ product.description }}</textarea>
+    </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="image">Image:</label>
+      <div class="col-md-4">
+      <input type="file" name="image" value="{{ product.image }}" class="form-control input-md" placeholder="PRODUCT IMAGE">
+    </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="vendor_price">Vendor Price:</label>
+      <div class="col-md-4">
+      <input type="number" name="vendor_price" id="id_vendor_price" value="{{ product.vendor_price }}" class="form-control input-md" placeholder="PRODUCT PRICE">
+    </div>
+    </div>
+    <hr>
+    <div  class="container ">
+    <p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Breakdown of Costs:</b></p>
+      <!-- _________________________________________________ -->
+      <table class="table table-bordered ">
+        <tbody>
+          <tr>
+            <th scope="row">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Admin Profit (5%): &nbsp;  &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<span id="admin_profit"></span></th>
+      
+          <tr>
+            <th scope="row">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GST (5%):&nbsp; &nbsp;&nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span id="gst"></span></th>
+      
+          </tr>
+          <tr>
+            <th scope="row">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total Price:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; <span id="total_price"></span></th>
+
+          </tr>
+        </tbody>
+      </table>  
+    </div>
+    <hr>
+    <div class="form-group d-grid gap-2 col-6 mx-auto">
+      <label class="col-md-4 control-label" for="button"></label>
+    <button type="submit" name="button" class="btn btn-primary">Add Product</button>
+  </div>
+</div>
+</fieldset>
+  </form>
+</body>
+</html>

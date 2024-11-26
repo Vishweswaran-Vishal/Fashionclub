@@ -1,0 +1,45 @@
+{% extends 'admin_base.html' %}
+
+{% block content %}
+<table class="table">
+    <h3>Vendors</h3>
+    <p>Total Vendors: {{ total_vendors }}</p>
+      <thead>
+        <tr class="table-active">
+          <th scope="col">Username</th>
+          <th scope="col">Email</th>
+          <th scope="col">Phone</th>
+          <th scope="col">Address</th>
+          <th scope="col">Vendor ID</th>
+          <!-- <th scope="col">Status</th> -->
+          <th scope="col">Action</th>
+          <!-- <th scope="col">Status</th> -->
+        </tr>
+      </thead>
+      <tbody>
+        {% for vendor in vendor %}
+          <tr class="table-danger">
+            <td scope="row">{{ vendor.username }}</td>
+            <td>{{ vendor.email }}</td>
+            <td>{{ vendor.phone }}</td>
+            <td>{{ vendor.address }}</td>
+            <td>{{ vendor.vendorid }}</td>
+            <!-- {% if vendor.is_verified %}
+            <td><a href="{% url 'customadmin:toggle_vendor_lock' vendor_id=vendor.id %}"><button>Unlock</button></a></td>
+            {% else %}
+            <td><a href="{% url 'customadmin:toggle_vendor_lock' vendor_id=vendor.id %}"><button>Lock</button></a></td>
+            {% endif %} -->
+            {% if vendor.is_locked %}
+            <td><a href="{% url 'customadmin:toggle_vendor_lock' vendor_id=vendor.id %}"><button>Unlock</button></a></td>
+            {% else %}
+            <td><a href="{% url 'customadmin:toggle_vendor_lock' vendor_id=vendor.id %}"><button>Lock</button></a></td>
+            {% endif %}
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="5">No vendors found.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% endblock %}

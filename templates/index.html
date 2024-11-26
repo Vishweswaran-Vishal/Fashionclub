@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+
+<!-- slider section -->
+<section class="slider_section ">
+	<div class="slider_bg_box">
+	  <img src="{% static 'img/slider-bg.jpg' %}" alt="">
+	</div>
+	<div id="customCarousel1" class="carousel slide" data-ride="carousel">
+	   <div class="carousel-inner">
+		  <div class="carousel-item active">
+			 <div class="container ">
+				<div class="row">
+				   <div class="col-md-7 col-lg-6 ">
+					  <div class="detail-box">
+						 <h1>
+						  <span>Sale 20% Off</span><br>
+							On Everything
+						  </h1>
+						  <p>
+							Explicabo esse amet tempora quibusdam laudantium, laborum eaque magnam fugiat hic? Esse dicta aliquid error repudiandae earum suscipit fugiat molestias, veniam, vel architecto veritatis delectus repellat modi impedit sequi.
+						  </p>
+						  <div class="btn-box">
+							<a href="" class="btn1">Shop Now</a>
+						  </div>
+						</div>
+					  </div>
+					</div>
+				  </div>
+				</div>
+				<div class="carousel-item ">
+				  <div class="container ">
+					<div class="row">
+					  <div class="col-md-7 col-lg-6 ">
+						<div class="detail-box">
+						  <h1>
+							<span>Sale 20% Off</span><br>
+							On Everything
+						  </h1>
+						  <p>
+							Explicabo esse amet tempora quibusdam laudantium, laborum eaque magnam fugiat hic? Esse dicta aliquid error repudiandae earum suscipit fugiat molestias, veniam, vel architecto veritatis delectus repellat modi impedit sequi.
+						  </p>
+						  <div class="btn-box">
+							<a href="" class="btn1">Shop Now</a>
+						  </div>
+						</div>
+					  </div>
+					</div>
+				  </div>
+				</div>
+				<div class="carousel-item">
+				  <div class="container ">
+					<div class="row">
+					  <div class="col-md-7 col-lg-6 ">
+						<div class="detail-box">
+						  <h1>
+							<span>Sale 20% Off</span><br>
+							On Everything
+						  </h1>
+						  <p>
+							Explicabo esse amet tempora quibusdam laudantium, laborum eaque magnam fugiat hic? Esse dicta aliquid error repudiandae earum suscipit fugiat molestias, veniam, vel architecto veritatis delectus repellat modi impedit sequi.
+						  </p>
+						  <div class="btn-box">
+							<a href="" class="btn1">Shop Now</a>
+						  </div>
+						</div>
+					  </div>
+					</div>
+				  </div>
+				</div>
+			  </div>
+			  <div class="container">
+				<ol class="carousel-indicators">
+				  <li data-target="#customCarousel1" data-slide-to="0" class="active"></li>
+				  <li data-target="#customCarousel1" data-slide-to="1"></li>
+				  <li data-target="#customCarousel1" data-slide-to="2"></li>
+				</ol>
+			  </div>
+			</div>
+		  </section>
+		  <!-- end slider section -->
+<br>
+
+ <!-- product section -->
+ <section class="product_section layout_padding">
+    <div class="container">
+       <div class="heading_container heading_center">
+          <h2>
+             New <span>Arrivals</span>
+          </h2>
+       </div>
+       <div class="row">
+       {% for product in products %}
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+             <div style="width: 100%; max-width: 300px;" class="box d-inline-block">
+                <div class="option_container">
+                   <div class="options">
+                      <a href="{% url 'buyer:products' %}" class="option2">
+                      View
+                      </a>
+                   </div>
+                </div>
+                <div class="img-box">
+                   <img src="{{ MEDIA_URL }}{{ product.image.url }}" alt="{{ product.name }}">
+                </div>
+                <div class="detail-box">
+                   <h5>
+                    {{ product.name }}
+                   </h5>
+                   <h6>
+                    ₹{{ product.total_price }}
+                   </h6>
+                </div>
+             </div>
+          </div>
+          {% endfor %}
+       </div>
+    </div>
+</section>
+<br>
+<br>
+<!-- subscribe section -->
+<section class="subscribe_section">
+  <div class="container-fuild">
+	 <div class="box">
+		<div class="row">
+		   <div class="col-md-6 offset-md-3">
+			  <div class="subscribe_form ">
+				 <div class="heading_container heading_center">
+					<h3>Subscribe To Get Discount Offers</h3>
+				 </div>
+				 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+				 <form action="">
+					<input type="email" placeholder="Enter your email">
+					<button>
+					subscribe
+					</button>
+				 </form>
+			  </div>
+		   </div>
+		</div>
+	 </div>
+  </div>
+</section>
+<!-- end subscribe section -->
+
+{% endblock %}

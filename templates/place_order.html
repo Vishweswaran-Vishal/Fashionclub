@@ -1,0 +1,28 @@
+
+
+{% block content %}
+  <h1>Place Order</h1>
+  <form method="POST" action="{% url 'place_order' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <!-- <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name" name="name" required>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" id="email" name="email" required>
+    </div>
+    <div class="form-group">
+      <label for="address">Address</label>
+      <textarea class="form-control" id="address" name="address" rows="3" required></textarea>
+    </div>
+    <div class="form-group">
+      <label for="phone">Phone</label>
+      <input type="tel" class="form-control" id="phone" name="phone" required>
+    </div> -->
+    <div class="text-right">
+      <button type="submit" class="btn btn-primary">Place Order</button>
+    </div>
+  </form>
+{% endblock %}

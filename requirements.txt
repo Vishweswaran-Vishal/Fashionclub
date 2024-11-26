@@ -1,0 +1,11 @@
+asgiref==3.6.0
+Babel==2.12.1
+Django==4.1.7
+django-cors-headers==3.14.0
+django-money==3.0.0
+djangorestframework==3.14.0
+py-moneyed==2.0
+pytz==2023.3
+sqlparse==0.4.3
+typing_extensions==4.5.0
+tzdata==2023.3

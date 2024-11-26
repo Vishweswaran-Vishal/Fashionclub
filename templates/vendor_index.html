@@ -1,0 +1,52 @@
+{% extends 'vendor_base.html' %}
+
+{% block content %}
+
+<section class="product_section layout_padding">
+  <div class="container">
+     <div class="heading_container heading_center">
+      {% if msg %}
+      {{ msg | safe }}
+      {% endif %}
+        <h2>
+           Your <span>Products</span>
+        </h2>
+     </div>
+     <div class="row">
+      {% if products.count == 0 %}
+      <p>No products found.</p>
+      {% else %}
+     {% for product in products %}
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+           <div style="width: 100%; max-width: 300px;" class="box d-inline-block">
+              <div class="option_container">
+                <div class="options">
+                  <a href="{% url 'vendor:product_edit' id=product.id %}" class="option1">
+                  Edit
+                  </a>
+               </div>
+                 <div class="options">
+                    <a href="{% url 'vendor:product_delete' id=product.id %}" class="option2">
+                    Delete
+                    </a>
+                 </div>
+              </div>
+              <div class="img-box">
+                 <img src="{{ MEDIA_URL }}{{ product.image.url }}" alt="{{ product.name }}">
+              </div>
+              <div class="detail-box">
+                 <h5>
+                  {{ product.name }}
+                 </h5>
+                 <h6>
+                  ₹{{ product.total_price }}
+                 </h6>
+              </div>
+           </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+     </div>
+  </div>
+</section>
+{% endblock %}

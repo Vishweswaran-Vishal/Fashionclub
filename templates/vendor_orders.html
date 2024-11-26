@@ -1,0 +1,45 @@
+{% extends 'vendor_base.html' %}
+
+{% block content %}
+  <h3>Orders</h3>
+  {% for order in orders %}
+  <table class="table">
+    <thead>
+      <tr class="table-active">
+        <th scope="col">Order ID</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Total Price</th>
+        <th scope="col">Customer Name</th>
+        <th scope="col">Customer Email</th>
+        <th scope="col">Customer Mobile No.</th>
+        <th scope="col">Customer Address</th>
+        <th scope="col">Ordered At</th>
+        <th scope="col">Products</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr class="table-danger">
+          <td scope="row">{{ order.id }}</td>
+          <td>{{ order.quantity }}</td>
+          <td>{{ order.total_price }}</td>
+          <td>{{ order.name }}</td>
+          <td>{{ order.email }}</td>
+          <td>{{ order.phone }}</td>
+          <td>{{ order.address }}</td>
+          <td>{{ order.ordered_at }}</td>
+          <td>
+            <ul>
+              {% for product in order.products.all %}
+                <li>{{ product.name }} - {{ product.total_price }}</li>
+              {% endfor %}
+            </ul>
+          </td>
+        </tr>
+      {% empty %}
+        <tr class="table-danger">
+          <td colspan="9">No orders found.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

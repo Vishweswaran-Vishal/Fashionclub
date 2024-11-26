@@ -1,9 +1,11 @@
-# FashionClub.
-The Multi-Vendor E-commerce Website Project using Python Django Framework and MySQL is a comprehensive web-based application designed to provide a platform for online marketplaces. 
+# E-Commerce-Nile-Website
+Django Simple Multi-Vendor E-Commerce-Nile Website
 
 # ABSTRACT
 
 ## if you like this project then ADD a STAR ⭐️ to this project 👆
+
+The Multi-Vendor E-commerce Website Project using Python Django Framework and MySQL is a comprehensive web-based application designed to provide a platform for online marketplaces. 
 
 The system features an intuitive user interface that allows vendors to easily create and manage their own online stores, add products, set prices, and fulfill orders. The system also provides customers with a seamless shopping experience, add items to their cart, and make purchases.
 
@@ -15,15 +17,15 @@ In summary, the Multi-Vendor E-commerce Website Project using Python Django Fram
  
 # Features of this Project
 
-### A. Admin Can
+### A. Admin Users Can
 
 1.Manage Category (Add, Update, Filter and Delete) 
 
 2.Manage Products (Add, Update, Filter and Delete)
 
-3.Manage Vendors (Update, Filter and Delete)
+3.Manage Users (Update, Filter and Delete)
 
-4.View Sales and Orders
+4.Manage Orders (View and Process)
 
 ### B. Vendors Can
 
@@ -33,7 +35,7 @@ In summary, the Multi-Vendor E-commerce Website Project using Python Django Fram
 
 3.Get Orders and Manage Them
 
-### C. Users Can
+### C. Users Can Can
 
 1.Add to Cart
 
@@ -56,11 +58,7 @@ Alternative to Pip is Homebrew
 ### Installation
 1. Create a Folder where you want to save the project
 
-2. Install XAMPP and start Apache and MySql servers
-
-Open MySql server page create database as "eshop"
-
-3. Create a Virtual Environment and Activate
+2. Create a Virtual Environment and Activate
 
 Install Virtual Environment First
 
@@ -68,26 +66,24 @@ Install Virtual Environment First
    
 Create Virtual Environment
 
-    $ python -m venv .venv
-
-4.Clone this project
+3.Clone this project
 
     $  git clone https://github.com/Surendhar182/E-Commerce-Nile-Website.git
     
 Then, Enter the project
 
-5.Install Requirements from 'requirements.txt'
+4.Install Requirements from 'requirements.txt'
 
     $  pip install -r requirements.txt
  
-6.Install mysqlclient in CM
+5.Install mysqlclient in CM
  
     $  pip install mysqlclient
   
-7.migrate the Database in CM
+6.migrate the Database in CM
    
     $  python manage.py migrate  
 
-8.Now Run Server
+7.Now Run Server
 
     $  python manage.py runserver

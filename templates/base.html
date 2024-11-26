@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  {% load static %}
+
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <link rel="shortcut icon" href="" type="">
+
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+ 
+  <!-- Bootstrap Core CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+
+  <!-- font awesome style -->
+  <!-- <link href="../static/css/font-awesome.min.css" rel="stylesheet" /> -->
+
+  <!-- boxicons cdn -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+
+  <!-- responsive style -->
+  <link href="{% static 'css/responsive.css' %}" rel="stylesheet" />
+
+  <title>The FashionClub.</title>
+  
+</head>
+
+<body>
+    
+    <!-- header section starts -->
+    <header class="header_section">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg custom_nav-container ">
+          
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link h4" href="/">The FashionClub.</a>
+            </li>
+            <li class="nav-item">
+              {% if request.user.is_authenticated and request.user.is_buyer %}
+              <a class="nav-link m-1" href="#">Hello {{ user.username }}!</a>
+              {% endif %}
+            </li>
+          </ul>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class=""> </span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'buyer:products' %}">Products</a>
+              </li>
+              
+              {% if request.user.is_authenticated and request.user.is_buyer %}
+
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'buyer:order_history' %}">Orders</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'customadmin:logout_view' %}">LogOut</a>
+              </li>
+              {% else %}
+             
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'customadmin:buyer_register' %}">SignUp</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'customadmin:login_view' %}">LogIn</a>
+              </li>
+              {% endif %}
+              <!--  -->
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'buyer:cart_view' %}"><i class='bx bxs-cart bx-sm'></i></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'customadmin:vendor' %}">Sell products</a>
+              </li>
+                </ul>
+              </div>
+            </nav>
+          </div>
+        </header>
+        <!-- end header section -->
+
+  {% block content %}
+  {% endblock %}
+
+  <!-- footer start -->
+<footer>
+  <div class="container ">
+     <div class="row">
+      <div class="col-md-4">
+        <div class="full">
+         <div class="logo_footer">
+           <a href="#"><img width="200" src="{% static 'img/logo.png' %}" alt="#" /></a>
+         </div>
+         <div class="information_f">
+           <p><strong>ADDRESS:</strong> Your Street Name, Your City Name, Country</p>
+           <p><strong>TELEPHONE:</strong> +91 987 654 3210</p>
+           <p><strong>EMAIL:</strong> yourmain@gmail.com</p>
+         </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+       <div class="row">
+       <div class="col-md-7">
+        <div class="row">
+           <div class="col-md-6">
+        <div class="widget_menu">
+           <h3>Menu</h3>
+           <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Testimonial</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Contact</a></li>
+           </ul>
+        </div>
+       </div>
+       <div class="col-md-6">
+        <div class="widget_menu">
+           <h3>Account</h3>
+           <ul>
+            <li><a href="#">Account</a></li>
+            <li><a href="#">Checkout</a></li>
+            <li><a href="#">Login</a></li>
+            <li><a href="#">Register</a></li>
+            <li><a href="#">Shopping</a></li>
+            <li><a href="#">Widget</a></li>
+           </ul>
+        </div>
+       </div>
+        </div>
+       </div>     
+       <div class="col-md-5">
+        <div class="widget_menu">
+           <h3>Newsletter</h3>
+           <div class="information_f">
+           <p>Subscribe by our newsletter and get update protidin.</p>
+           </div>
+           <div class="form_sub">
+            <form>
+             <fieldset>
+              <div class="field">
+                 <input type="email" placeholder="Enter Your Mail" name="email" />
+                 <input type="submit" value="Subscribe" />
+              </div>
+             </fieldset>
+            </form>
+           </div>
+        </div>
+       </div>
+       </div>
+      </div>
+     </div>
+  </div>
+  </footer>
+  <!-- footer end -->
+  <div class="cpy_">
+  <p>© 2023 All Rights Reserved By <a href="#">FashionClub.</a></p>
+  </div>
+
+ <!-- jQery -->
+ <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+ <!-- popper js -->
+ <script src="{% static 'js/popper.min.js' %}"></script>
+ <!-- bootstrap js -->
+ <script src="{% static 'js/bootstrap.js' %}"></script>
+ <!-- custom js -->
+ <script src="{% static 'js/custom.js' %}"></script>
+</body>
+
+</html>

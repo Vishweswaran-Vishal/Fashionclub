@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+      <!-- Style -->
+      {% comment %} <link rel="stylesheet" href="{% static 'css/style.css' %}"> {% endcomment %}
+      <link rel="stylesheet" href="{% static 'css/Reg.css' %}">
+
+  <title>Register</title>
+
+  <style>
+
+.montserrat{
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+  </style>
+</head>
+<body style="background-color: white;">
+  <div class="container mt-2">
+    <div class="row justify-content-center">
+      <div class="col-md-5">
+        <div style="border-color: #f7444e;" class="card">
+          <div style="border-color: #f7444e; color: #f7444e;" class="card-header text-center fs-2 montserrat ">Register</div>
+          <span class="mb-0 text-muted">
+            {% if messages %}
+            <ul class="messages">
+              {% for message in messages %}
+              <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+          </span>
+          <div class="card-body mb-2">
+            <form method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="form-group mb-2">
+                <label for="{{ form.username.id_for_label }}">Username:</label>
+                {{ form.username }}
+              </div>
+              <div class="form-group mb-2">
+                <label for="{{ form.email.id_for_label }}">Email:</label>
+                {{ form.email }}
+              </div>
+              <div class="form-group mb-2">
+                <label for="{{ form.phone.id_for_label }}">Phone Number:</label>
+                {{ form.phone }}
+              </div>
+              <div class="form-group mb-2">
+                <label for="{{ form.address.id_for_label }}">Address:</label>
+                {{ form.address }}
+              </div>
+              <div class="form-group mb-2">
+                <label for="{{ form.password1.id_for_label }}">Password:</label>
+                {{ form.password1 }}
+              </div>
+              <div class="form-group mb-2">
+                <label for="{{ form.password2.id_for_label }}">Confirm Password:</label>
+                {{ form.password2 }}
+              </div>
+              <br>
+              <center>
+              <div class="form-group d-grid gap-2 col-6 mx-auto">
+                <button type="submit" style="background-color: #f7444e; color: white;" class="btn btn-lg">Register Now..!</button>
+              </div>
+              <hr style="color: #f7444e;">
+              <div class="text">
+                <p>Already Registered? <a style="color: #f7444e; " href="{% url 'customadmin:login_view' %}">Login</a></p>
+              </div>
+              <hr style="color: #f7444e;">
+            </center>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+</body>
+</html>
